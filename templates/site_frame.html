@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+	<title>the wulf. - {% block title %}{{name}}{% endblock %}</title>
+	<link type="text/css" rel="stylesheet" href="/static/css/reset.css"/>
+
+	<!-- GOOGLE ANALYTICS -->
+		<script type="text/javascript">
+	
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-28580105-1']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+	<!-- END GOOGLE ANALYTICS -->
+
+	<style type="text/css">
+
+		/*h1, p, a, body {
+			font-family: Courier;
+			font-size: 14px;
+		}
+		body,td,th {
+			color: #FFFFFF;
+		}
+		body {
+			background-color: #000000;
+		}
+		a:link {
+			text-decoration: none;
+			color: #FFFFFF;
+		}
+		a:visited {
+			text-decoration: none;
+			color: #FFFFFF;
+		}
+		a:hover {
+			text-decoration: underline;
+		}
+		a:active {
+			text-decoration: none;
+		}
+		.title {
+			font-size: 36px;
+			font-weight: bold;
+			font-style: italic;
+		}
+		.link {font-size: 14px}
+		.space {font-size: 36px}
+		.text {font-size: 18px}
+		.smalltitle {font-size: 30px; font-weight: bold; font-style: italic; }*/
+
+		/* NEW STYLES */
+		body {
+			position: absolute;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+
+			font-family: 'Helvetica Neue', sans-serif;
+			font-size: 100%;
+			
+			background-color: #111;
+			color: #ddd;
+		}
+		
+
+		#wrapper {
+			/*position: absolute;*/
+			width: 960px;
+
+			margin: auto;
+		}
+
+		a {
+			text-decoration: none;
+			color: #ddd;
+		}
+		li {
+			list-style-type: none;
+		}
+		h1 {
+			margin-bottom: 15px;
+			font-family: 'Courier', serif;
+			font-weight: 100;
+
+		}
+
+		h2, h3 {
+			clear: both;
+			padding: 0;
+			margin: 0;
+
+			/*font-family: 'Courier', serif;*/
+			font-size: 1.2em;
+			font-weight: bold;
+			line-height: 1.5em;
+
+		}
+
+		.logo {
+			font-family: 'Courier', serif;
+			/*font-style: italic;*/
+			font-weight: normal;
+			letter-spacing: -0.02em;
+
+		}
+
+		div {
+			clear: both;
+			padding: 0;
+			margin: 0;
+		}
+
+		article {
+			clear: both;
+			display: block;
+		}
+
+		/* Site Header */
+		header {
+			display: block;
+			/*margin-bottom: 25px;*/
+			width: 97%;
+		}
+		
+		header h1 {
+			float: left;
+			padding: 0;
+			margin: 0;
+			font-weight: 100;
+		}
+		
+		header li {
+			list-style-type: none;
+			float: left;
+			padding: 10px;
+		}
+
+		header .donate {
+			float: right;
+		}
+		
+		header .membership {
+			float: left;
+		}
+
+		header .address {
+			margin: 0;
+			padding: 0;
+			clear: left;
+			
+			font-size: 0.85em;
+		}
+
+		#wrapper > header {
+			margin-bottom: 25px;
+		}
+
+		.donate {	
+			background-color: #fff;
+			display: block;
+
+			margin-bottom: 10px;
+			padding: 0;
+			width: 200px;
+			height: 50px;
+
+			text-align: center;
+		}
+
+		.donate a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding-top: 15px;
+			text-align: center;
+
+			color: #111;
+		}
+		
+		.membership {	
+			background-color: #fff;
+			display: block;
+
+			margin-bottom: 10px;
+			padding: 0;
+			width: 265px;
+			height: 50px;
+
+			text-align: center;
+		}
+
+		.membership a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding-top: 15px;
+			text-align: center;
+
+			color: #111;
+		}
+		
+		#home .profile .details {
+			display: none;
+		}
+
+		/*Events*/
+		.events {
+			width: 100%;
+			padding: 0;
+			margin: 0;
+		}
+
+		.event {
+			margin-left: 40px;
+			margin-bottom: 40px;
+		}
+
+		article.event header {
+			font-size: 1.2em;
+			padding: 0;
+			margin: 0;
+		}
+
+		.events h1 {
+			border-bottom: 1px solid #ddd;
+		}
+
+		.event .datetime {
+			/*border-bottom: 1px solid #ddd;*/
+			/*color: rgb(17,247,105);*/
+			font-size: 0.75em;
+		}
+
+		/*.event .description p {*/
+		p {
+			font-size: 0.9em;
+			font-weight: normal;
+			letter-spacing: 0em;
+			line-height: 1.25em;
+			text-align: justify;
+
+			margin: 0;
+			margin-bottom: 0.9em;
+		}
+
+		/*PROGRAM*/
+		.program {
+			margin-left: 40px;
+		}
+		/*VENUES*/
+		.profile {
+			display: block;
+			clear: both;
+		}
+
+		.profile img {
+			float: left;
+			padding: 0;
+			margin: 0;
+		}
+
+		.profile .images {
+
+		}
+		/*UTILITY*/
+
+		.highlight {
+			font-size: 2em;
+			color: #55f;
+		}
+		
+		.playButton, .stopButton, .timeSlider {
+		    clear: none;
+		    float: left;
+		    width: 16px;
+		    margin-top: 10px;
+		    margin-bottom: 20px;
+		    font-size: 80%;
+		    padding-left: 3px;
+		    border: 1px solid #ddd;
+		    height: 16px;
+		    cursor: pointer;
+		}
+		
+		.stopButton {
+			background-color: #ddd;
+		    width: 14px;
+		    height: 16px;
+		    margin: 7px;
+		    margin-top: 10px;
+		    margin-bottom: 0px;
+		}
+		
+		.timeSlider {
+		    width: 150px;
+		    border: 0px;
+		}
+		
+		#navlist > li
+		{
+		display: inline-block;
+		list-style-type: none;
+		padding-right: 20px;
+		}
+</style>
+</head>
+
+<body>
+	<div id="wrapper">
+	{% include 'header.html' %}
+
+	{% block content %}
+
+	{% endblock %}
+
+
+	
+</div>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script>
+        $('.playAudio').click(function(e){
+        	e.preventDefault();
+        	//if(window.webkitAudioContext != undefined){
+                var newAudioEl = document.createElement('audio'),
+                        newSource = document.createElement('source');
+                var $newAudioEl = $(newAudioEl);
+
+                newAudioEl.controls = "controls";
+                newSource.src = e.currentTarget.href;
+                
+                var prim_ext = newSource.src.split('.').pop();
+                var alt_ext = 'ogg';
+                if(prim_ext == 'ogg'){
+                	alt_ext = 'mp3';
+                } 
+                newSource.type = 'audio/'.concat(prim_ext);
+                
+                var secondSource = document.createElement('source');
+                var secondHref = newSource.src.split(prim_ext).join(alt_ext);
+                secondSource.src = secondHref;
+                secondSource.type = 'audio/'.concat(alt_ext);
+
+                var thirdSource = document.createElement('source');
+                var thirdHref = newSource.src.split(prim_ext).join('wav');
+                thirdHref = thirdHref.split('compressed').join('uncompressed');
+                thirdSource.src = thirdHref;
+                thirdSource.type = 'audio/wav';
+
+
+                $newAudioEl.hide();
+                $newAudioEl.append(newSource).append(secondSource).append(thirdSource);
+
+                var playButton = document.createElement('div');
+                $(playButton).html('►');
+                $(playButton).addClass('playButton');
+                $(playButton).click(function() {
+                	if(!newAudioEl.paused) {
+                		$(playButton).html('►');
+                		newAudioEl.pause();
+                	}
+                	else {
+                		$(playButton).html('| |');
+                		newAudioEl.play();	
+                	}
+                    
+                });
+
+                var stopButton = document.createElement('div');
+
+
+                $(stopButton).addClass('stopButton');
+                $(stopButton).click(function() {
+                	$(playButton).html('►');
+                    newAudioEl.pause();
+                    newAudioEl.currentTime = 0;
+                });
+
+                var timeSlider = document.createElement('input');
+                $(timeSlider).addClass('timeSlider');
+                timeSlider.type = 'range';
+                timeSlider.min = 0;
+                timeSlider.max = 1000;
+
+                newAudioEl.addEventListener('timeupdate', function(e) {
+                    timeSlider.value = (newAudioEl.currentTime/newAudioEl.duration) * 1000;
+                    //console.log(newAudioEl.currentTime);
+                });
+                
+                $(timeSlider).on('change', function() {
+                	newAudioEl.currentTime = (this.value / 1000) * newAudioEl.duration;
+                });
+
+                $(this).after(playButton);
+                $(playButton).after(stopButton);
+                $(stopButton).after(timeSlider);
+
+                $(this).remove();
+               //
+               //else {
+               //	$(this).after("Currently only supported by Chrome or Safari. Support for Firefox coming soon.");
+               //	$(this).remove();
+               //}
+        });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+{% extends "site_frame.html" %}
+{% block content %}
+<div class="profiles">
+	{% for profile in profiles %}
+	
+		{% embed_profile_module profile 'false' %}
+	{% endfor %}
+</div>
+
+{% endblock %}

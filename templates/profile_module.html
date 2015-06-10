@@ -1,0 +1,44 @@
+<div class="profile">
+	<div class="images">
+		{% for profilepic in profile.profilepic_set.all %}
+			<img src='{{MEDIA_URL}}{{ profilepic.media_file.url }}'/>
+		{% endfor %}
+	</div>
+	<div class="details">
+		<h2>{{profile.name}}</h2>
+
+		
+		{% if profile_type == "VenueProfile" or verbose == 'true' %}
+			<ul>
+				<li>{{profile.address_1}}</li>
+				<li>{{profile.address_2}}</li>
+				<li>{{profile.city}}</li>
+				<li>{{profile.state}}</li>
+				<li>{{profile.zip_code}}</li>
+				<li>{{profile.phone_number_1}}</li>
+				<li>
+					<ul>
+						{% for email in profile.emails.all %}	
+							<li>{{ email }}</li>
+						{% endfor %}
+					</ul>
+				</li>
+			</ul>
+		{% endif %} 
+
+		{% if verbose == 'false' %}
+			{{profile.short_description }}
+		{% endif %}   
+
+		{% if verbose == 'true' %}
+			{{profile.description }}
+			
+			{% for weblink in profile.weblinks.all %}
+				{{weblink}}
+			{% endfor %}
+			
+			{{profile.birth_date}}
+			{{profile.death_date}}
+		{% endif %} 
+	</div>  
+</div>

@@ -1,0 +1,36 @@
+<div class="program">
+	{% for program in programs %}
+		<h3>{{ program.work.name }}</h3>
+
+		{% for author in program.work.authors.all %}
+			by {{ author }}
+		{% endfor %}
+	
+		{% if program.movements|length > 0 %}
+			Movements: <ol>
+				{% for movement in program.movements %}
+					<li>{{ movement.name }}</li>
+				{% endfor %}
+			</ol>
+		{% endif %}
+		{%comment%}
+		<a href="{{MEDIA_URL}}{{ program.compressed_master_recording.url }}">--listen--</a>
+		{%endcomment%}
+		<p>
+	{%endfor%}
+
+{%comment%}
+	<ul>
+		{% for performer in performers %}		
+			<li>{{ performer.performer.name }} 
+				{% if performer.instruments.all|length > 0 %}
+					 - 
+        			{% for instrument in performer.instruments.all %}
+						{{ instrument.name }}, 
+					{% endfor %}
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+{%endcomment%}
+</div>

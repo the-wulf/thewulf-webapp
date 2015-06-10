@@ -1,0 +1,93 @@
+{% extends "email_frame.html" %}
+{% block content %}
+<div id="home">
+
+	<div class="events">
+	
+		<h1>upcoming events</h1>
+		{% if upcoming_event_list %}
+		    {% for event in upcoming_event_list %}
+<article class="event">
+
+	{% if event.name %}
+		<div class="datetime">
+			<h2>
+				
+				{% if event.name != "the wulf. 2014 fundraiser" %}
+				{{ event.start_date|date:"m.d.Y"}} {{ event.start_time|time:"g:i a"}}
+				{% if event.end_date != event.start_date %} 
+					{% if event.end_date %}
+						- {{event.end_date|date:"m.d.Y"}} 
+					{% endif %}
+
+					{% if event.end_time %}
+						{{event.end_time|time:"h:i a"}} 
+					{%endif%} 
+				{%endif%}
+				{%endif%}
+
+			</h2>
+		</div>
+	<header>
+		<h2 class="name">{{ event.name }}</h2>
+	</header>
+
+	<div class="details">
+		{% with event.venues.all as venues %}
+    		{% if venues|length > 1 %}
+    			<div class="venues">
+        			{% for venue in venues %}
+						{{ venue.name }}
+					{% endfor %}
+				</div>
+			{% else %}
+				{% if venues|length == 1 and venues.0.name != 'the wulf.' %}
+					<div class="venues">
+						the wulf. @ {{ venues.0.name}}
+					</div>
+    			{% endif %}
+    		{% endif %}
+    	{% endwith %}
+	
+    		
+		<div class="description">
+			{% if event.name != "the wulf. 2014 fundraiser" %}
+    		{{ event.description|safe }}
+    		{% else %}
+    		{{ event.short_description|safe }}
+    		{% endif %}
+    	</div>
+
+		</div>
+    {% endif %}
+    
+</article>
+		    {% endfor %}
+		{% else %}
+			<p>
+		    no upcoming events
+		    </p>
+		{% endif %}
+	</div>
+	
+	<p>
+			Performances this year have been made possible in part by grants from the City of Los Angeles Department of Cultural Affairs and the Los Angeles County Arts Commission.
+		</p>
+
+		<p>
+			<img src="http://www.thewulf.org/media/legacy/DCA_LOGO.jpg" width="272" height="44" /> </p><p>
+			<img src="http://www.thewulf.org/media/legacy/lacounty.jpg" width="272" height="272" /> </p><p>
+			<img src="http://www.thewulf.org/media/legacy/AaronCoplandFundlogo.jpg" width="272" height="44" /> </p><p>
+			<img src="http://www.thewulf.org/media/legacy/amphion_logo.jpg" width="272" height="44" />
+		</p>
+		
+		<p> In the past, we have received funds from the Metabolic Studio (a direct charitable activity of the Annenberg Foundataion). </p>
+		
+		<p>
+			<img src="http://www.thewulf.org/media/legacy/Metabolic.png" width="272" height="44" /> 
+			<img src="http://www.thewulf.org/media/legacy/Annenberg.jpg" width="188" height="44" />
+		</p>
+		
+</div>
+
+{% endblock %}
