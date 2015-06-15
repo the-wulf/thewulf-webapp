@@ -1,5 +1,4 @@
 *.py[cd]
 .svn/
-static/
 .project
 .pydevproject
