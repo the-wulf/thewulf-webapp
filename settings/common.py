@@ -29,10 +29,10 @@ dbhost = '' if local_development else 'thewulfdb.thewulf.org'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': DBNAME
+        'NAME': DBNAME,
         'USER': 'thewulf',
         'PASSWORD': os.environ.get("DBPASS", ''),
-        'HOST': dbhost,
+        'HOST': dbhost
     }
 }
 
