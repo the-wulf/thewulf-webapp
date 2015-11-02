@@ -209,5 +209,5 @@ CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get("EMAILPASS", "")
 EMAIL_HOST_USER = 'info@thewulf.org'
-EMAIL_Port = 587
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True

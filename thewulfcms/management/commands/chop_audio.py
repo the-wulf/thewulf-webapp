@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.template import Context, loader, Library
-from thewulf.thewulfcms.models import *
+#from thewulf.thewulfcms.models import *
 import os
 import re
 from django.contrib.auth.models import User, Group
@@ -17,8 +17,10 @@ class Command(BaseCommand):
 
 
 def card_scrape_chopper(top_folder, date_string):
+    print "fjdska;fmdsakfd;sanfidsafjdsaf;dsafjdias;fdajsfdisa;j"
     command = ''
     for root,dirs,files in os.walk(top_folder): #walk through the specified directory
+        print root, dirs, files
         for form in files:
             if form.endswith(date_string + ".txt"): #find all .txt files
                 data = open(os.path.join(root, form))
@@ -34,10 +36,10 @@ def card_scrape_chopper(top_folder, date_string):
                 command = "#!/bin/bash\n\n"
                 command = command + "export PATH=\"$HOME/bin:$PATH\"\n"
                 command = command + "cd " + raw_folder + "\n" 
-                command = command + "jar xvf " + zipfile + "\n"
-                command = command + "cd wulf_archive_autoconcat\n"
-                command = command + "cd " + zipfile.split('.')[0] + "\n"
-                command = command + "sox -M 1.wav 2.wav stereo.wav\n"
+                #command = command + "jar xvf " + zipfile + "\n"
+                #command = command + "cd wulf_archive_autoconcat\n"
+                #command = command + "cd " + zipfile.split('.')[0] + "\n"
+                #command = command + "sox -M 1.wav 2.wav stereo.wav\n"
                 
                 command = command + "ffmpeg -i " + date_string + ".mov -vn -acodec copy stereo.wav\n"
                 
@@ -89,6 +91,7 @@ def card_scrape_chopper(top_folder, date_string):
                 command = command + '\n\n'
                 
     f = open('/home/mwinter80/scripts/tmp/chop_audio.sh', 'w')
+    #print command
     f.write(command)
     f.close()
     subprocess.call(['/home/mwinter80/scripts/tmp/chop_audio.sh'])
