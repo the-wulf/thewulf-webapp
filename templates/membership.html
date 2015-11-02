@@ -5,8 +5,6 @@
 <div>
 	<br>
 <p>One of the most helpful ways to support the wulf. is to become a member through a monthly subscription. 
-As an incentive, subscribers of $10 or more will receive a quarterly newsletter 
-which will include texts and artifacts from the artists who present here.
 </p>
 <br>
 <table border="1" cellspacing="1" cellpadding="5" align="center">
@@ -49,7 +47,15 @@ become a subscribing member
 </tr>
 </tbody>
 </table>
+
+	<p>
+	{% if fundraiser_event %}
+		{% embed_event_module fundraiser_event 'true' %}
+	{% endif %}
+	</p>
+	
 </div>
+
 
 
 {% endblock %}

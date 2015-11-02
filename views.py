@@ -26,7 +26,8 @@ def donate(request, name):
     return render_to_response('donate.html', {'name': name, 'fundraiser_event': fundraiser_event})
 
 def membership(request, name):
-    return render_to_response('membership.html', {'name': name,})
+    fundraiser_event = Event.objects.get(name = 'the wulf. 2015 fundraiser')
+    return render_to_response('membership.html', {'name': name, 'fundraiser_event': fundraiser_event})
 
 def media(request, name):
     return render_to_response('media.html', {'name': name,})
