@@ -4,7 +4,9 @@
 	<p>
 	<h1>upcoming events</h1>
 	
+{% comment %}
 	{% embed_event_module fundraiser 'true' %}
+{% endcomment %}
 		
 		{% if upcoming_event_list %}
 		    {% for event in upcoming_event_list %}
@@ -13,13 +15,13 @@
 		    {% embed_event_module event 'true' %}
 		    {% endcomment %}
 		    
-		    
+{% comment %}
 		    	{% if event.name != 'the wulf. 2015 fundraiser' %}
 		    
 					{% embed_event_module event 'true' %}
 			
 				{% endif %}
-
+{% endcomment %}
 			
 		    {% endfor %}
 	{% else %}

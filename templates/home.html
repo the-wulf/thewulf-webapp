@@ -9,9 +9,9 @@
 	
 		<h1>upcoming events</h1>
 		
-		
+{% comment %}		
 		{% embed_event_module fundraiser 'false' %}
-		
+{% endcomment %}	
 		
 		{% if upcoming_event_list %}
 		    {% for event in upcoming_event_list %}
@@ -20,13 +20,13 @@
 		    	{% embed_event_module event 'false' %}
 		    	{% endcomment %}
 		    	
-		    	
+{% comment %}		    	
 		    	{% if event.name != 'the wulf. 2015 fundraiser' %}
 		    
 					{% embed_event_module event 'false' %}
 			
 				{% endif %}
-				
+{% endcomment %}				
 			
 		    {% endfor %}
 		{% else %}
