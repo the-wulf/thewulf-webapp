@@ -21,9 +21,9 @@ def events_by_year(request, name, year):
     #past_event_list = Event.objects.filter(name = 'Experimental Music Yearbook')
     return render_to_response('events.html', {'name': name, 'upcoming_event_list':upcoming_event_list, 'past_event_list':past_event_list, 'fundraiser': fundraiser})
     
-def event_detail(request, name,  id):
+def event_details(request, name,  id):
     event = Event.objects.get(id = id)
-    return render_to_response('event_module.html', {'event': event, 'verbose': True})
+    return render_to_response('event_details.html', {'event': event, 'verbose': True})
 
 def donate(request, name):
     fundraiser_event = Event.objects.get(name = 'the wulf. 2015 fundraiser')
