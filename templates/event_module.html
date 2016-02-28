@@ -24,7 +24,7 @@
 			</h2>
 		</div>
 	<header>
-		<h2 class="name">{{ event.name }}</h2>
+		<h2 class="name"><a href="{% url 'event_details' event.id %}">{{ event.name }}</a></h2>
 	</header>
 
 	<div class="details">
