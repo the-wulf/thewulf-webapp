@@ -24,7 +24,7 @@
 			</h2>
 		</div>
 	<header>
-		{% with "http://www.thewulf.org/events/details/"|add:event.id|add:"/" as link %}
+		{% with "http://www.thewulf.org/events/details/"|add:event.id|stringformat:"s"|add:"/" as link %}
 		<h2 class="name"><a href="{{link}}">{{ event.name }}</a></h2>
 		{% endwith %}
 	</header>
