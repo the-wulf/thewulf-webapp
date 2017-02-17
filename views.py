@@ -12,7 +12,7 @@ def home(request, name):
     return render_to_response('home.html', {'name': name, 'venue': venue, 'upcoming_event_list': upcoming_event_list, 'fundraiser': fundraiser})
 
 def events(request, name):
-    return events_by_year(request, name, '2016')
+    return events_by_year(request, name, date.today().year)
 
 def events_by_year(request, name, year):
     fundraiser = Event.objects.get(name='the wulf. 2015 fundraiser')
