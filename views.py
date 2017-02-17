@@ -51,6 +51,10 @@ def profile(request, name, val):
     return render_to_response('profiles.html', {'name': name, 'profiles': profiles })
 
 
+def about(request, *args, **kwargs):
+    return render_to_response('about.html', {})
+
+
 #def work(request, name):
 #    if name == 'rtr':
 #        return render_to_response('work.html', {})

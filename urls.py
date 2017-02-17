@@ -15,7 +15,8 @@ template.add_to_builtins('thewulf.thewulfcms.templatetags.cmsmodules')
 # How do I match all of these in one
 urlpatterns = patterns('',
 	(r'^grappelli/', include('grappelli.urls')),
-	('(^$|^home/$)', 'views.home'),
+	('(^$)', 'views.home'),
+	('(^about/$)', 'views.about'),
 	('(^events/$)', 'views.events'),
 	('(^events/(\d+)/$)', 'views.events_by_year'),
 	url('(^events/details/(\d+)/$)', 'views.event_details', name = 'event_details'),
