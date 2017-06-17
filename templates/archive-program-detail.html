@@ -1,0 +1,25 @@
+{% extends 'archive-base.html' %}
+{% block title %}the wulf. | archive | {{ event.name }}{% endblock title %}
+{% block content %}
+<h2>{{ event.name }}</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Authors</th>
+            <th>Audio Url</th>
+            <th>Video Url</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for work in works %}
+        <tr>
+            <td>{{ work.name }}</td>
+            <td>{{ work.authors }}</td>
+            <td>{{ work.audio.compressed_master_recording.url }}</td>
+            <td>{{ work.video.media_file.url }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

@@ -1,8 +1,11 @@
+from datetime import datetime, date
+import itertools as it
+
 from django.template import Context, loader, Library
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+
 from thewulfcms.models import *
-from datetime import *
 from django.template.loader import render_to_string
 
 def home(request, name):
@@ -55,8 +58,43 @@ def about(request, *args, **kwargs):
     return render_to_response('about.html', {})
 
 
-#def work(request, name):
-#    if name == 'rtr':
-#        return render_to_response('work.html', {})
-#    else:
-#        return render_to_string('work.html', {})
+def archive_list(request, year=None, month=None):
+    queryset = Program.objects.select_related('event').order_by('event__start_date')
+    qinfo = 'all'
+
+    if year:
+        queryset = queryset.filter(event__start_date__year=int(year))
+        qinfo = year
+    if month:
+        queryset = queryset.filter(event__start_date__month=int(month))
+        qinfo += ' %s' % month
+
+    queryset = queryset.values('id', 'event__name', 'event__start_date')
+
+    programs = OrderedDict()
+    for item in queryset:
+        group_date = item['event__start_date'].strftime('%Y %b'), item['event__start_date'].replace(day=1)
+        programs.setdefault(group_date, [])
+        item['display_date'] = item['event__start_date'].strftime('%Y %b %d')
+        programs[group_date].append(item)
+
+    return render_to_response('archive-list.html', {'programs': programs, 'qinfo': qinfo})
+
+
+def archive_program_detail(request, program_id):
+
+    program = get_object_or_404(Program, pk=program_id)
+    works_performed = program.works.all()
+
+    work_items = []
+    for work in works_performed:
+        audio = EventAudioRecording.objects.filter(works__id=work.pk, event__id=program.event.pk).first()
+        video = EventVideo.objects.filter(works__id=work.pk, event__id=program.event.pk).first()
+        work_items.append({
+            'name': work.name,
+            'authors': ','.join(it.chain(*work.authors.values_list('name')))
+            'audio': audio,
+            'video': video
+        })
+
+    return render_to_response('archive-program-detail.html', {'event': program.event, 'works': work_items})

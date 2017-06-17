@@ -1,0 +1,33 @@
+{% extends 'archive-base.html' %}
+
+{% block title %}the wulf. | archive | {{ qinfo }}{% endblock title %}
+
+{% block content %}
+{% for display_title, event_list in program.items() %}
+    <h2><a href="{% url archive_list_by_month year=display_title[1].year, day=display_title[1].day %}">{{ display_title[0] }}</a></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in event_list %}
+            <tr data-program-detail="{% url archive_detail event['id'] %}">
+                <td>{{ event.display_date }}</td>
+                <td>{{ event.event__name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+
+<script>
+jQuery(document).ready(function($) {
+    $("tr[data-program-detail]").click(function() {
+        window.location = $(this).data("program-detail");
+    });
+}); 
+</script>
+{% endblock content %}
