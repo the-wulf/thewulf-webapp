@@ -37,13 +37,13 @@
     		{% if venues|length > 1 %}
     			<div class="venues">
         			{% for venue in venues %}
-						{{ venue.name }}
+						{{ venue.name }}{% if venue.address %} - {{ venue.address }}{% endif %}
 					{% endfor %}
 				</div>
 			{% else %}
 				{% if venues|length == 1 and venues.0.name != 'the wulf.' %}
 					<div class="venues">
-						the wulf. @ {{ venues.0.name}}
+						the wulf. @ {{ venues.0.name}}{% if venues.0.address %} - {{ venues.0.address }}{% endif %}
 					</div>
     			{% endif %}
     		{% endif %}
