@@ -172,10 +172,40 @@ class GroupProfile(AbstractProfile):
     
     
 class VenueProfile(AbstractProfile):
+    ADDRESS_PARTS = [
+        'address_1',
+        'address_2',
+        'city',
+        'state',
+        'country',
+        'zip_code'
+    ]
 
     @staticmethod
     def autocomplete_search_fields():
         return ("id__iexact", "name__icontains",)
+        
+    @property
+    def address(self):
+        """ Construct a full street address for a venue
+
+        output looks like this::
+
+            'address_1 address_2, city, state country zip_code'
+            e.g.
+            '1234 Fake St. Apt 9, Kingston, RI USA 12345'
+        """
+        full_address = ''
+        for field_name in self.ADDRESS_PARTS:
+            thing = getattr(self, field_name, None)
+            if not thing:
+                continue
+            if field_name != 'address_1':
+                thing = ' %s' % thing
+            if field_name in ('city', 'state'):
+                thing = ',%s' % thing
+            full_address += thing
+        return full_address
     
     def related_label(self):
         return "%s" % (self.name)
